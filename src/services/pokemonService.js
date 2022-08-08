@@ -4,7 +4,9 @@ module.exports = {
     buscarTodos: () => {
         return new Promise((aceito, rejeitado)=>{
 
-            db.query('SELECT * FROM pokemons', (error, results)=>{
+            let sql = 'SELECT * FROM pokemons';
+
+            db.query(sql, (error, results)=>{
                 if(error) { 
                     return rejeitado(error);  
                 } else {
@@ -16,7 +18,11 @@ module.exports = {
     buscarUm: (id) => {
         return new Promise((aceito, rejeitado)=>{
 
-            db.query('SELECT * FROM pokemons WHERE id = ?', [id], (error, results) => {
+            let sql = 'SELECT * FROM pokemons WHERE id = ?';
+
+            let values = [id];
+
+            db.query(sql, values, (error, results) => {
                 if(error) { 
                     return rejeitado(error); 
                 }
@@ -31,9 +37,11 @@ module.exports = {
     inserir: async (name, hp, attack, defense, special_attack, special_defense, speed) => {
         return new Promise((aceito, rejeitado)=> {
 
-            db.query('INSERT INTO pokemons (name, hp, attack, defense, special_attack, special_defense, speed) VALUES (?, ?, ?, ?, ?, ?, ?)',
-                [name, hp, attack, defense, special_attack, special_defense, speed],
-                (error, results)=>{
+            let sql = 'INSERT INTO pokemons (name, hp, attack, defense, special_attack, special_defense, speed) VALUES (?, ?, ?, ?, ?, ?, ?)';
+
+            let values = [name, hp, attack, defense, special_attack, special_defense, speed];
+
+            db.query(sql, values, (error, results)=>{
                     if(error){ rejeitado(error); return; }
                     aceito(results.insertId); 
                 }
