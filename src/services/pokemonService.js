@@ -56,7 +56,7 @@ module.exports = {
             let sql = 'UPDATE pokemons SET name = ?, hp = ?, attack = ?, defense = ?, special_attack = ?, special_defense = ?, speed = ? WHERE id = ?';
 
             let values = [name, hp, attack, defense, special_attack, special_defense, speed, id];
-            
+
             db.query(sql, values, (error, results) => {
                     if(error){ 
                         return rejeitado(error); 
@@ -66,5 +66,20 @@ module.exports = {
                 }
             );
         });
+    },
+    excluir: async (id) => {
+        return new Promise((aceito, rejeitado) => {
+            let sql = 'DELETE FROM pokemons WHERE id = ?';
+
+            let values = [id];
+
+            db.query(sql, values, (error, results) => {
+                if (error) {
+                    return rejeitado(error);
+                } else {
+                    aceito(results);
+                }
+            })
+        })
     }
 }

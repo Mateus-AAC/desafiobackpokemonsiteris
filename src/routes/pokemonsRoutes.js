@@ -12,4 +12,6 @@ router.post('/cadastrarpokemon', pokemonsController.inserir);
 
 router.put('/pokemonatualizar/:id', pokemonsController.atualizar);
 
+router.delete('/pokemondeletar/:id', pokemonsController.excluir);
+
 module.exports = router;
