@@ -3,10 +3,7 @@ const PokemonService = require('../services/PokemonService');
 module.exports = {
     buscarTodos: async (req, res) => {
         try {
-            let json = {
-                error: '',
-                result: []
-            };
+            let json = { error: '', result: [] };
 
             let pokemons = await PokemonService.buscarTodos();
 
@@ -32,7 +29,7 @@ module.exports = {
     },
     buscarUm: async (req, res) => {
         try {
-            let json = { error: '', result: {} };
+            let json = { error: '', result: [] };
 
             let id = req.params.id;
 
@@ -55,6 +52,42 @@ module.exports = {
             }
 
             res.status(200).json(json);
+        } catch (error) {
+            res.status(404).json(`erro: ${error}`)
+        }
+    },
+    inserir: async (req, res) => {
+        try {
+            let json = { error: '', result: [] };
+
+            let name = req.body.name;
+            let hp = req.body.hp;
+            let attack = req.body.attack;
+            let defense = req.body.defense;
+            let special_attack = req.body.special_attack;
+            let special_defense = req.body.special_defense;
+            let speed = req.body.speed;
+    
+            if (name && hp && attack && defense && special_attack && special_defense && speed) {
+                let pokemonsId = await PokemonService.inserir(name, hp, attack, defense, special_attack, special_defense, speed);
+    
+                json.result = {
+                    id: pokemonsId,
+                    name,
+                    atributes: {
+                        attack,
+                        defense,
+                        special_attack,
+                        special_defense,
+                        speed
+                    }
+                };
+    
+            } else {
+                json.error = 'campos não enviados';
+            }
+    
+            res.status(200).json(json)
         } catch (error) {
             res.status(404).json(`erro: ${error}`)
         }

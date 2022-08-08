@@ -22,6 +22,8 @@ Antes de iniciar, se assegure que possui os requisitos abaixo:
 
 Para instalar/executar este projeto, siga as seguintes etapas:
 
-- clone o repositorio
-- rode npm install para instalar as depencias 
-- use npm start para inicia o projeto
+- clone o repositorio.
+- rode npm install para instalar as depencias. 
+- use o script de banco de dados no seu mysql.
+- criei um dotenv igual ao de examplo contendo as informações do banco de dados.
+- use npm start para inicia o projeto.

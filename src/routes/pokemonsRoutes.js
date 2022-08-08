@@ -8,4 +8,6 @@ router.get('/', pokemonsController.buscarTodos);
 
 router.get('/pokemon/:id', pokemonsController.buscarUm);
 
+router.post('/cadastrarpokemon', pokemonsController.inserir);
+
 module.exports = router;

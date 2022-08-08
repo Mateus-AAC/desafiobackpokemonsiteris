@@ -28,4 +28,16 @@ module.exports = {
             });
         });
     },
+    inserir: async (name, hp, attack, defense, special_attack, special_defense, speed) => {
+        return new Promise((aceito, rejeitado)=> {
+
+            db.query('INSERT INTO pokemons (name, hp, attack, defense, special_attack, special_defense, speed) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                [name, hp, attack, defense, special_attack, special_defense, speed],
+                (error, results)=>{
+                    if(error){ rejeitado(error); return; }
+                    aceito(results.insertId); 
+                }
+            );
+        });
+    }
 }
