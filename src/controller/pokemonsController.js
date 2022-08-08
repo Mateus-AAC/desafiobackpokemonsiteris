@@ -67,10 +67,10 @@ module.exports = {
             let special_attack = req.body.special_attack;
             let special_defense = req.body.special_defense;
             let speed = req.body.speed;
-    
+
             if (name && hp && attack && defense && special_attack && special_defense && speed) {
                 let pokemonsId = await PokemonService.inserir(name, hp, attack, defense, special_attack, special_defense, speed);
-    
+
                 json.result = {
                     id: pokemonsId,
                     name,
@@ -82,12 +82,52 @@ module.exports = {
                         speed
                     }
                 };
+
+            } else {
+                json.error = 'nao enviado';
+            }
+
+            res.status(200).json(json)
+        } catch (error) {
+            res.status(404).json(`erro: ${error}`)
+        }
+    },
+    atualizar: async (req, res) => {
+        try {
+
+            let json = { error: '', result: [] };
+
+            let id = req.params.id;
+            let name = req.body.name;
+            let hp = req.body.hp;
+            let attack = req.body.attack;
+            let defense = req.body.defense;
+            let special_attack = req.body.special_attack;
+            let special_defense = req.body.special_defense;
+            let speed = req.body.speed;
+    
+            if (id && name && hp && attack && defense && special_attack && special_defense && speed) {
+                let pokemonsId = await PokemonService.atualizar(name, hp, attack, defense, special_attack, special_defense, speed, id);
+    
+                json.result = {
+                    pokemonsId,
+                    id,
+                    name,
+                    atributes: {
+                        attack,
+                        defense,
+                        special_attack,
+                        special_defense,
+                        speed
+                    }
+                };
     
             } else {
-                json.error = 'campos não enviados';
+                json.error = 'nao enviado';
             }
     
             res.status(200).json(json)
+
         } catch (error) {
             res.status(404).json(`erro: ${error}`)
         }

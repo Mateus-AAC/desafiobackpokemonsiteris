@@ -42,8 +42,27 @@ module.exports = {
             let values = [name, hp, attack, defense, special_attack, special_defense, speed];
 
             db.query(sql, values, (error, results)=>{
-                    if(error){ rejeitado(error); return; }
-                    aceito(results.insertId); 
+                    if(error){ 
+                        return rejeitado(error);
+                    } else {
+                        aceito(results.insertId); 
+                    }
+                }
+            );
+        });
+    },
+    atualizar: async (name, hp, attack, defense, special_attack, special_defense, speed, id) => {
+        return new Promise((aceito, rejeitado)=> {
+            let sql = 'UPDATE pokemons SET name = ?, hp = ?, attack = ?, defense = ?, special_attack = ?, special_defense = ?, speed = ? WHERE id = ?';
+
+            let values = [name, hp, attack, defense, special_attack, special_defense, speed, id];
+            
+            db.query(sql, values, (error, results) => {
+                    if(error){ 
+                        return rejeitado(error); 
+                    } else {
+                        aceito(results);
+                    }
                 }
             );
         });
