@@ -14,6 +14,6 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/pokemons', routes);
+app.use('/', routes);
 
 module.exports = app;

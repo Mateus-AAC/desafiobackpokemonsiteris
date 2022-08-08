@@ -6,4 +6,6 @@ const pokemonsController = require('../controller/pokemonsController');
 
 router.get('/', pokemonsController.buscarTodos);
 
+router.get('/pokemon/:id', pokemonsController.buscarUm);
+
 module.exports = router;
