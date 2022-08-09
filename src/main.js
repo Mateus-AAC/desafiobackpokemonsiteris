@@ -4,6 +4,8 @@ const express = require('express');
 
 const cors = require('cors');
 
+const helmet = require('helmet');
+
 const bodyParser = require('body-parser');
 
 const routesPokemons = require('../src/routes/pokemonsRoutes');
@@ -11,6 +13,8 @@ const routesPokemons = require('../src/routes/pokemonsRoutes');
 const acessoRouter = require('../src/routes/acessoRoutes');
 
 const app = express();
+
+app.use(helmet());
 
 app.use(cors({ origin: '*' }));
 
