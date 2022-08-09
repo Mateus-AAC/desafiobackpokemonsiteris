@@ -4,8 +4,8 @@ const router = express.Router();
 
 const acessoController = require('../controller/acessoController');
 
-router.post('/pegarAcesso', acessoController.entrarNaApi);
+router.post('/login', acessoController.gerarToken);
 
-router.post('/logout', acessoController.excluirtokenApi);
+router.post('/logout', acessoController.excluirToken);
 
 module.exports = router;
