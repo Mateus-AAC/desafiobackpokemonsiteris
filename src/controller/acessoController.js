@@ -12,10 +12,10 @@ module.exports = {
 
                 return res.status(200).send({ Auth: true, Token: token })
             } else {
-                res.status(500).send('Login inválido!');
+                res.status(500).send('Login invalido.');
             }
         } catch (error) {
-            res.status(404).json(`erro: ${error}`);
+            res.status(404).json(`Erro: ${error}`);
         }
     },
     excluirtokenApi: (req, res) => {

@@ -90,14 +90,14 @@ module.exports = {
                 };
 
             } else {
-                json.error = 'nao enviado';
+                json.error = 'Não enviado';
             }
 
             res.status(201).json(json);
 
         } catch (error) {
 
-            res.status(404).json(`erro: ${error}`);
+            res.status(404).json(`Erro: ${error}`);
 
         }
     },
@@ -132,7 +132,7 @@ module.exports = {
                 };
 
             } else {
-                json.error = 'nao enviado';
+                json.error = 'Não enviado';
             }
 
             res.status(200).json(json);
@@ -145,7 +145,7 @@ module.exports = {
     },
     excluir: async (req, res) => {
         try {
-            let json = { error: '', result: ['pokemon excluido com sucesso '] };
+            let json = { error: '', result: ['Pokemon excluido com sucesso '] };
 
             await PokemonService.excluir(req.params.id);
 
@@ -153,7 +153,7 @@ module.exports = {
 
         } catch (error) {
 
-            res.status(404).json(`erro: ${error}`);
+            res.status(404).json(`Erro: ${error}`);
 
         }
     }
