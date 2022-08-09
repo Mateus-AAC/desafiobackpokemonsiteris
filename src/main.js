@@ -6,16 +6,20 @@ const cors = require('cors');
 
 const bodyParser = require('body-parser');
 
-const routes = require('../src/routes/pokemonsRoutes');
+const routesPokemons = require('../src/routes/pokemonsRoutes');
+
+const acessoRouter = require('../src/routes/acessoRoutes');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: '*' }));
 
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/api', routes);
+app.use('/api', acessoRouter);
+
+app.use('/api', routesPokemons);
 
 module.exports = app;

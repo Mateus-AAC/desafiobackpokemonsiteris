@@ -26,7 +26,7 @@ module.exports = {
         } catch (error) {
 
             res.status(404).json(`erro:${error}`);
-            
+
         }
     },
     buscarUm: async (req, res) => {
@@ -80,6 +80,7 @@ module.exports = {
                     id: pokemonsId,
                     name,
                     atributes: {
+                        hp,
                         attack,
                         defense,
                         special_attack,
@@ -92,12 +93,12 @@ module.exports = {
                 json.error = 'nao enviado';
             }
 
-            res.status(200).json(json);
+            res.status(201).json(json);
 
         } catch (error) {
 
             res.status(404).json(`erro: ${error}`);
-            
+
         }
     },
     atualizar: async (req, res) => {
@@ -149,7 +150,7 @@ module.exports = {
             await PokemonService.excluir(req.params.id);
 
             res.status(200).json(json);
-            
+
         } catch (error) {
 
             res.status(404).json(`erro: ${error}`);
