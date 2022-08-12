@@ -3,9 +3,10 @@ const PokemonService = require('../services/PokemonService');
 module.exports = {
     buscarTodos: async (req, res) => {
         try {
-            let json = { error: '', result: [] };
 
-            let pokemons = await PokemonService.buscarTodos();
+            const json = { error: '', result: [] };
+
+            const pokemons = await PokemonService.buscarTodos();
 
             for (let i in pokemons) {
                 json.result.push({
@@ -14,7 +15,7 @@ module.exports = {
                         "hp": pokemons[i].hp,
                         "attack": pokemons[i].attack,
                         "defense": pokemons[i].defense,
-                        "special-attack": pokemons[i].special_attack,
+                        "special_attack": pokemons[i].special_attack,
                         "special_defense": pokemons[i].special_defense,
                         "speed": pokemons[i].speed
                     }
@@ -31,11 +32,12 @@ module.exports = {
     },
     buscarUm: async (req, res) => {
         try {
-            let json = { error: '', result: [] };
 
-            let id = req.params.id;
+            const json = { error: '', result: [] };
 
-            let pokemons = await PokemonService.buscarUm(id);
+            const id = req.params.id;
+
+            const pokemons = await PokemonService.buscarUm(id);
 
             if (pokemons) {
                 json.result = {
@@ -63,18 +65,26 @@ module.exports = {
     },
     inserir: async (req, res) => {
         try {
-            let json = { error: '', result: [] };
 
-            let name = req.body.name;
-            let hp = req.body.hp;
-            let attack = req.body.attack;
-            let defense = req.body.defense;
-            let special_attack = req.body.special_attack;
-            let special_defense = req.body.special_defense;
-            let speed = req.body.speed;
+            const json = { error: '', result: [] };
+
+            const name = req.body.name;
+
+            const hp = req.body.hp;
+
+            const attack = req.body.attack;
+
+            const defense = req.body.defense;
+
+            const special_attack = req.body.special_attack;
+
+            const special_defense = req.body.special_defense;
+
+            const speed = req.body.speed;
 
             if (name && hp && attack && defense && special_attack && special_defense && speed) {
-                let pokemonsId = await PokemonService.inserir(name, hp, attack, defense, special_attack, special_defense, speed);
+
+                const pokemonsId = await PokemonService.inserir(name, hp, attack, defense, special_attack, special_defense, speed);
 
                 json.result = {
                     id: pokemonsId,
@@ -104,19 +114,26 @@ module.exports = {
     atualizar: async (req, res) => {
         try {
 
-            let json = { error: '', result: [] };
+            const json = { error: '', result: [] };
 
-            let id = req.params.id;
-            let name = req.body.name;
-            let hp = req.body.hp;
-            let attack = req.body.attack;
-            let defense = req.body.defense;
-            let special_attack = req.body.special_attack;
-            let special_defense = req.body.special_defense;
-            let speed = req.body.speed;
+            const id = req.params.id;
+
+            const name = req.body.name;
+
+            const hp = req.body.hp;
+
+            const attack = req.body.attack;
+
+            const defense = req.body.defense;
+
+            const special_attack = req.body.special_attack;
+
+            const special_defense = req.body.special_defense;
+
+            const speed = req.body.speed;
 
             if (id && name && hp && attack && defense && special_attack && special_defense && speed) {
-                let pokemonsId = await PokemonService.atualizar(name, hp, attack, defense, special_attack, special_defense, speed, id);
+                const pokemonsId = await PokemonService.atualizar(name, hp, attack, defense, special_attack, special_defense, speed, id);
 
                 json.result = {
                     pokemonsId,
@@ -145,7 +162,8 @@ module.exports = {
     },
     excluir: async (req, res) => {
         try {
-            let json = { error: '', result: ['Pokemon excluido com sucesso '] };
+            
+            const json = { error: '', result: ['Pokemon excluido com sucesso '] };
 
             await PokemonService.excluir(req.params.id);
 

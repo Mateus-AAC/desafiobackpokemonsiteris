@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports = {
     verifyJWT: (req, res, next) => {
-        var token = req.headers['x-access-token'];
+        const token = req.headers['x-access-token'];
 
         if (!token) return res.status(401).send({ auth: false, message: 'Nenhum token fornecido.' });
 

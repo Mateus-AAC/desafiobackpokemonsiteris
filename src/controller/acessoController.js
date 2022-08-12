@@ -3,15 +3,11 @@ const jwt = require('jsonwebtoken');
 module.exports = {
     gerarToken: (req, res) => {
         try {
-            if(req.body.user === 'admin' && req.body.password === '123'){
+            if(req.body.user != null && req.body.password != null){
 
                 const id = 1; 
 
-                var token = jwt.sign({ id }, process.env.SECRET, {
-
-                    expiresIn: 3000 
-
-                });
+                const token = jwt.sign({ id }, process.env.SECRET);
 
                 return res.status(200).send({ Auth: true, Token: token })
 

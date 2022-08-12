@@ -12,8 +12,6 @@ CREATE TABLE `nintendo`.`pokemons` (
   `special_defense` INT NULL DEFAULT 0,
   `speed` INT NULL DEFAULT 1,
   PRIMARY KEY (`id`));
-  
-INSERT INTO pokemons (id, name, hp, attack, defense, special_attack, special_defense, speed) VALUES (DEFAULT, 'puff', 88, 99, 45, 49, 36, 40);
 
 CREATE TABLE `nintendo`.`results` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -23,6 +21,6 @@ CREATE TABLE `nintendo`.`results` (
   `attack` INT NULL,
   `defense` INT NULL,
   `special_attack` INT NULL,
-  `specail_defense` INT NULL,
+  `special_defense` INT NULL,
   `speed` INT NULL,
   PRIMARY KEY (`id`));
