@@ -133,10 +133,9 @@ module.exports = {
             const speed = req.body.speed;
 
             if (id && name && hp && attack && defense && special_attack && special_defense && speed) {
-                const pokemonsId = await PokemonService.atualizar(name, hp, attack, defense, special_attack, special_defense, speed, id);
+                await PokemonService.atualizar(name, hp, attack, defense, special_attack, special_defense, speed, id);
 
                 json.result = {
-                    pokemonsId,
                     id,
                     name,
                     atributes: {
