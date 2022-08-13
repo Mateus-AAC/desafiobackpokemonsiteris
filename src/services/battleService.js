@@ -1,39 +1,6 @@
 const db = require('../database/config');
 
 module.exports = {
-    exibirTodosResultados: async () =>{
-        return new Promise((aceito, rejeitado)=>{
-
-            const sql = 'SELECT * FROM results';
-
-            db.query(sql, (error, results)=>{
-                if(error) { 
-                    return rejeitado(error);  
-                } else {
-                    aceito(results);
-                }
-            });
-        });
-    },
-    buscarUm: async (id) => {
-        return new Promise((aceito, rejeitado)=>{
-
-            const sql = 'SELECT * FROM results WHERE id = ?';
-
-            const values = [id];
-
-            db.query(sql, values, (error, results) => {
-                if(error) { 
-                    return rejeitado(error); 
-                }
-                if(results.length > 0){
-                    aceito(results[0]);
-                } else {
-                    aceito(false);
-                }
-            });
-        });
-    },
     selecionar: (playerA, playerB) => {
         return new Promise((aceito, rejeitado) => {
 
@@ -43,10 +10,15 @@ module.exports = {
 
             db.query(sql, values, (error, results) => {
                 if (error) {
+
                     return rejeitado(error);
+
                 } else {
+
                     aceito(results);
+
                 }
+
             }
             );
 
@@ -90,8 +62,14 @@ module.exports = {
             if (countA > countB) {
 
                 var vencedorA = {
-                    winner: jogadorA.id,
-                    loser: jogadorB.id,
+                    winner: {
+                        id: jogadorA.id,
+                        nome: jogadorA.name
+                    },
+                    loser: {
+                        id: jogadorB.id,
+                        nome: jogador.name
+                    },
                     details: {
                         hp: detalhes[0],
                         attack: detalhes[1],
@@ -102,24 +80,33 @@ module.exports = {
                     }
                 };
 
-                const sql = 'INSERT INTO results (winner, loser, hp, attack, defense, special_attack, special_defense, speed) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+                const sql = 'INSERT INTO results (id_winner, id_loser, winner_name, loser_name, hp, attack, defense, special_attack, special_defense, speed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
-                const values = [jogadorA.id, jogadorB.id, detalhes[0], detalhes[1], detalhes[2], detalhes[3], detalhes[4], detalhes[5]];
+                const values = [jogadorA.id, jogadorB.id, jogadorA.name, jogadorB.name, jogabodrdetalhes[0], detalhes[1], detalhes[2], detalhes[3], detalhes[4], detalhes[5]];
 
                 db.query(sql, values, (error, results) => {
-                        if (error) {
-                            return rejeitado(error);
-                        } else {
-                            return aceito(vencedorA, results.insertId, status);
-                        }
+                    if (error) {
+
+                        return rejeitado(error);
+
+                    } else {
+
+                        return aceito(vencedorA, results.insertId);
+
                     }
-                );
+                });
 
             } else if (countB > countA) {
 
                 var vencedorB = {
-                    winner: jogadorB.id,
-                    loser: jogadorA.id,
+                    winner: {
+                       id_pokemon: jogadorB.id,
+                       nome: jogadorB.name
+                    },
+                    loser: {
+                        id_pokemon: jogadorA.id,
+                        nome: jogadorA.name
+                    }, 
                     details: {
                         hp: detalhes[0],
                         attack: detalhes[1],
@@ -130,22 +117,30 @@ module.exports = {
                     }
                 };
 
-                const sql = 'INSERT INTO results (winner, loser, hp, attack, defense, special_attack, special_defense, speed) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+                const sql = 'INSERT INTO results (id_winner, id_loser, winner_name, loser_name, hp, attack, defense, special_attack, special_defense, speed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
-                const values = [jogadorB.id, jogadorA.id, detalhes[0], detalhes[1], detalhes[2], detalhes[3], detalhes[4], detalhes[5]];
+                const values = [jogadorB.id, jogadorA.id, jogadorB.name, jogadorA.name, detalhes[0], detalhes[1], detalhes[2], detalhes[3], detalhes[4], detalhes[5]];
 
                 db.query(sql, values, (error, results) => {
-                        if (error) {
-                            return rejeitado(error);
-                        } else {
-                            return aceito(vencedorB , results);
-                        }
+
+                    if (error) {
+
+                        return rejeitado(error);
+
+                    } else {
+
+                        return aceito(vencedorB, results);
+
                     }
-                );
+                });
+
+            } else if (countB == countA) {
+
+                return aceito('empate');
 
             } else {
 
-                return aceito('empate');
+                return aceito('dados invalidos não posso comparar.');
 
             }
 

@@ -15,8 +15,10 @@ CREATE TABLE `nintendo`.`pokemons` (
 
 CREATE TABLE `nintendo`.`results` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `winner` INT NULL,
-  `loser` INT NULL,
+  `id_winner` INT NULL,
+  `id_loser` INT NULL,
+  `winner_name` VARCHAR(45) NULL,
+  `loser_name` VARCHAR(45) NULL,
   `hp` INT NULL,
   `attack` INT NULL,
   `defense` INT NULL,

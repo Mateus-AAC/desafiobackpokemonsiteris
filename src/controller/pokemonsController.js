@@ -163,7 +163,7 @@ module.exports = {
     excluir: async (req, res) => {
         try {
             
-            const json = { error: '', result: ['Pokemon excluido com sucesso '] };
+            const json = { error: '', result: ['Pokemon excluido com sucesso.'] };
 
             await PokemonService.excluir(req.params.id);
 

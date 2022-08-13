@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 module.exports = {
     gerarToken: (req, res) => {
         try {
-            if(req.body.user != null && req.body.password != null){
+            if(req.body.user == 'admin' && req.body.password == '123'){
 
                 const id = 1; 
 
