@@ -8,9 +8,13 @@ module.exports = {
 
             db.query(sql, (error, results)=>{
                 if(error) { 
-                    return rejeitado(error);  
+
+                    return rejeitado(error);
+
                 } else {
-                    aceito(results);
+
+                    return aceito(results);
+                    
                 }
             });
         });
@@ -24,12 +28,18 @@ module.exports = {
 
             db.query(sql, values, (error, results) => {
                 if(error) { 
+
                     return rejeitado(error); 
+
                 }
                 if(results.length > 0){
-                    aceito(results[0]);
+
+                    return aceito(results[0]);
+
                 } else {
-                    aceito(false);
+
+                    return aceito(false);
+
                 }
             });
         });
@@ -43,9 +53,13 @@ module.exports = {
 
             db.query(sql, values, (error, results)=>{
                     if(error){ 
+
                         return rejeitado(error);
+
                     } else {
-                        aceito(results.insertId); 
+
+                        return aceito(results.insertId); 
+                        
                     }
                 }
             );
@@ -59,9 +73,13 @@ module.exports = {
 
             db.query(sql, values, (error, results) => {
                     if(error){ 
+
                         return rejeitado(error); 
+
                     } else {
-                        aceito(results);
+
+                        return aceito(results);
+                        
                     }
                 }
             );
@@ -75,9 +93,13 @@ module.exports = {
 
             db.query(sql, values, (error, results) => {
                 if (error) {
+
                     return rejeitado(error);
+
                 } else {
-                    aceito(results);
+
+                    return aceito(results);
+
                 }
             })
         })

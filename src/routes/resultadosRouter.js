@@ -8,7 +8,7 @@ const resultadosController = require('../controller/resultadosController')
 
 router.get('/resultados', verificarConexao.verifyJWT, resultadosController.buscarTodos);
 
-router.get('/resultados/:id', verificarConexao.verifyJWT, resultadosController.buscarUm);
+router.get('/resultado/:id', verificarConexao.verifyJWT, resultadosController.buscarUm);
 
 router.get('/raking', verificarConexao.verifyJWT, resultadosController.raking);
 

@@ -15,7 +15,7 @@ module.exports = {
 
                 } else {
 
-                    aceito(results);
+                    return aceito(results);
 
                 }
 

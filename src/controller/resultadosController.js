@@ -82,19 +82,11 @@ module.exports = {
 
             const json = { error: '', result: [] };
 
+            const counts = {};
+
             const resultados = await resultadosServices.raking();
 
-            const dados = [];
-
-            for (let i in resultados) {
-
-                dados.push(resultados[i].winner_name);
-
-            }
-
-            var counts = {};
-
-            dados.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+            resultados.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
 
             json.result = counts;
 

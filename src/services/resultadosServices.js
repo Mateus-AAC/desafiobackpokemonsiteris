@@ -13,7 +13,7 @@ module.exports = {
 
                 } else {
 
-                    aceito(results);
+                    return aceito(results);
 
                 }
             });
@@ -34,18 +34,18 @@ module.exports = {
                 }
                 if (results.length > 0) {
 
-                    aceito(results[0]);
+                    return aceito(results[0]);
 
                 } else {
 
-                    aceito(false);
+                   return  aceito(false);
 
                 }
             });
 
         });
     },
-    raking: async () =>{
+    raking: async () => {
         return new Promise((aceito, rejeitado) => {
 
             const sql = 'SELECT * FROM results';
@@ -55,9 +55,16 @@ module.exports = {
 
                     return rejeitado(error);
 
-                } else {    
+                } else {
+                    const dados = [];
 
-                    aceito(results);
+                    for (let i in results) {
+
+                        dados.push(results[i].winner_name);
+
+                    }
+
+                    return aceito(dados);
 
                 }
             });
